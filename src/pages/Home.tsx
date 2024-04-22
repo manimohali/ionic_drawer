@@ -1,17 +1,38 @@
 import React from 'react';
 import { IonHeader, IonPage, IonToolbar, IonTitle, IonContent, withIonLifeCycle, IonButtons, IonMenuButton } from '@ionic/react';
+import { fetchData } from '../apiService';
 
 class HomePage extends React.Component {
-  ionViewWillEnter() {
-    console.log('ionViewWillEnter event fired');
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: null,
+      loading: true,
+      error: null,
+    };
   }
 
-  ionViewWillLeave() {
-    console.log('ionViewWillLeave event fired');
+
+  
+   ionViewWillEnter() {
+    try {
+      // const result = await fetchData();
+      // this.setState({ data: result, loading: false });
+    } catch (error) {
+      // this.setState({ error: 'Failed to fetch data', loading: false });
+    }
+
+    // console.log(process.env.TEST_ENV);
+    console.log('ionViewWillEnter event fired');
   }
 
   ionViewDidEnter() {
     console.log('ionViewDidEnter event fired');
+  }
+
+  ionViewWillLeave() {
+    console.log('ionViewWillLeave event fired');
   }
 
   ionViewDidLeave() {
@@ -19,6 +40,21 @@ class HomePage extends React.Component {
   }
 
   render() {
+
+    // const { data, loading, error } = this.state;
+
+    // if (loading) return <div>Loading...</div>;
+    // if (error) return <div>Error: {error}</div>;
+
+    // return (
+    //   <div>
+    //     <h1>Data Loaded</h1>
+    //     {/* Render your data here */}
+    //     <pre>{JSON.stringify(data, null, 2)}</pre>
+    //   </div>
+    // );
+
+
     return (
       <IonPage>
          <IonHeader>
@@ -38,6 +74,12 @@ class HomePage extends React.Component {
             </IonToolbar>
             </IonHeader>
         </IonContent>
+
+        <div>
+          <h1>Data Loaded</h1>
+    
+        </div>
+
       </IonPage>
     );
   }
