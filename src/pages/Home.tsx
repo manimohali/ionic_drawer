@@ -17,8 +17,17 @@ class HomePage extends React.Component {
   
    ionViewWillEnter() {
     try {
-      // const result = await fetchData();
-      // this.setState({ data: result, loading: false });
+
+      const result =  fetchData();
+      result.then(data => {
+        this.setState({ data: data, loading: false });
+        console.log(data);
+      }).catch(error => {
+        this.setState({ error: 'Failed to fetch data', loading: false });
+        console.log('error 1',error);
+      });
+     
+      this.setState({ data: result, loading: false });
     } catch (error) {
       // this.setState({ error: 'Failed to fetch data', loading: false });
     }
@@ -42,7 +51,6 @@ class HomePage extends React.Component {
   render() {
 
     // const { data, loading, error } = this.state;
-
     // if (loading) return <div>Loading...</div>;
     // if (error) return <div>Error: {error}</div>;
 
@@ -73,12 +81,15 @@ class HomePage extends React.Component {
                 <IonTitle size="large">Home </IonTitle>
             </IonToolbar>
             </IonHeader>
+
+
+          <div>
+          <h1>Data Loaded</h1>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+      
+          </div>
         </IonContent>
 
-        <div>
-          <h1>Data Loaded</h1>
-    
-        </div>
 
       </IonPage>
     );
