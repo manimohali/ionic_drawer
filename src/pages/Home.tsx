@@ -22,14 +22,10 @@ class HomePage extends React.Component {
       result.then(data => {
         this.setState({ data: data, loading: false });
         console.log(data);
-      }).catch(error => {
-        this.setState({ error: 'Failed to fetch data', loading: false });
-        console.log('error 1',error);
-      });
-     
-      this.setState({ data: result, loading: false });
+      })
+      // this.setState({ data: result, loading: false });
     } catch (error) {
-      // this.setState({ error: 'Failed to fetch data', loading: false });
+      this.setState({ error: 'Failed to fetch data', loading: false });
     }
 
     // console.log(process.env.TEST_ENV);
@@ -50,7 +46,8 @@ class HomePage extends React.Component {
 
   render() {
 
-    // const { data, loading, error } = this.state;
+    const { data, loading, error } = this.state;
+    console.log('loading',loading);
     // if (loading) return <div>Loading...</div>;
     // if (error) return <div>Error: {error}</div>;
 
