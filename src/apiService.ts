@@ -14,7 +14,7 @@ const fetchData = async () => {
         const response = await axios.get(`${BASE_URL}/products/2801223`);
         return { hasError: false, ...response};
     } catch (error) {
-        console.error("Error from fetchData ",error);
+        // console.error("Error from fetchData ",error);
         return {data:[], hasError: true, message: error.message, status: error.status,code: error.code ,error:error};
     }
 };
